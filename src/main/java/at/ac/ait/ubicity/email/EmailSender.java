@@ -43,7 +43,7 @@ public class EmailSender implements UbicityPlugin {
 		final PropertyLoader config = new PropertyLoader(
 				EmailSender.class.getResource("/email.cfg"));
 
-		this.name = config.getString("addon.email.name");
+		this.name = config.getString("plugin.email.name");
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -56,8 +56,8 @@ public class EmailSender implements UbicityPlugin {
 					@Override
 					protected PasswordAuthentication getPasswordAuthentication() {
 						return new PasswordAuthentication(config
-								.getString("addon.email.user"), config
-								.getString("addon.email.password"));
+								.getString("plugin.email.user"), config
+								.getString("plugin.email.password"));
 					}
 				});
 		started = true;

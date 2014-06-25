@@ -47,7 +47,7 @@ public class EmailReader implements UbicityPlugin {
 		final PropertyLoader config = new PropertyLoader(
 				EmailReader.class.getResource("/email.cfg"));
 
-		this.name = config.getString("addon.email.name");
+		this.name = config.getString("plugin.email.name");
 
 		Properties props = new Properties();
 		props.setProperty("mail.store.protocol", "imaps");
@@ -56,8 +56,8 @@ public class EmailReader implements UbicityPlugin {
 		try {
 			store = session.getStore("imaps");
 			store.connect("imap.gmail.com",
-					config.getString("addon.email.user"),
-					config.getString("addon.email.password"));
+					config.getString("plugin.email.user"),
+					config.getString("plugin.email.password"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
