@@ -2,7 +2,6 @@ package at.ac.ait.ubicity.email;
 
 import java.io.IOException;
 import java.util.Properties;
-import java.util.Random;
 
 import javax.mail.Address;
 import javax.mail.Folder;
@@ -28,7 +27,6 @@ public class EmailReader implements UbicityPlugin {
 	private static final Logger logger = Logger.getLogger(EmailReader.class);
 
 	private String name;
-	private int uniqueId;
 
 	private Session session;
 
@@ -42,8 +40,6 @@ public class EmailReader implements UbicityPlugin {
 
 	@Init
 	public void init() {
-		uniqueId = new Random().nextInt();
-
 		final PropertyLoader config = new PropertyLoader(
 				EmailReader.class.getResource("/email.cfg"));
 
@@ -101,20 +97,5 @@ public class EmailReader implements UbicityPlugin {
 
 	@Shutdown
 	public void shutdown() {
-	}
-
-	@Override
-	public final int hashCode() {
-		return uniqueId;
-	}
-
-	@Override
-	public final boolean equals(Object o) {
-
-		if (EmailReader.class.isInstance(o)) {
-			EmailReader other = (EmailReader) o;
-			return other.uniqueId == this.uniqueId;
-		}
-		return false;
 	}
 }

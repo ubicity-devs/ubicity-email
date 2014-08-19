@@ -1,7 +1,6 @@
 package at.ac.ait.ubicity.email;
 
 import java.util.Properties;
-import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -26,7 +25,6 @@ public class EmailSender implements UbicityPlugin {
 	private static final Logger logger = Logger.getLogger(EmailSender.class);
 
 	private String name;
-	private int uniqueId;
 
 	private Session session;
 
@@ -38,8 +36,6 @@ public class EmailSender implements UbicityPlugin {
 
 	@Init
 	public void init() {
-		uniqueId = new Random().nextInt();
-
 		final PropertyLoader config = new PropertyLoader(
 				EmailSender.class.getResource("/email.cfg"));
 
@@ -82,20 +78,5 @@ public class EmailSender implements UbicityPlugin {
 
 	@Shutdown
 	public void shutdown() {
-	}
-
-	@Override
-	public final int hashCode() {
-		return uniqueId;
-	}
-
-	@Override
-	public final boolean equals(Object o) {
-
-		if (EmailSender.class.isInstance(o)) {
-			EmailSender other = (EmailSender) o;
-			return other.uniqueId == this.uniqueId;
-		}
-		return false;
 	}
 }
